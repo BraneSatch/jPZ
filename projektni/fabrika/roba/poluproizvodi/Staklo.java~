@@ -1,0 +1,6 @@
+package fabrika.roba.poluproizvodi;
+
+import fabrika.roba.Poluproizvod;
+
+public class Staklo extends Poluproizvod{
+}

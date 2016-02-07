@@ -1,0 +1,44 @@
+package fabrika;
+
+import java.util.Scanner;
+import java.net.Socket;
+
+import fabrika.proizvodnja.Proizvodnja;
+import fabrika.racunovodstvo.Racunovodstvo;
+import fabrika.racunovodstvo.RacunovodstvoRadnik;
+import filijala.Narudzba;
+import fabrika.proizvodnja.masine.*;
+
+public class Fabrika{
+  private Racunovodstvo r;
+  private Proizvodnja p;
+  
+  public Fabrika(Racunovodstvo r, Proizvodnja p){
+    this.r = r;
+    this.r.setProizvodnju(p);
+    this.p = p;
+  }
+  
+  public Proizvodnja getProizvodnju(){
+    return this.p;
+  }
+  
+  public Racunovodstvo getRacunovodstvo(){
+    return this.r;
+  }
+  
+  public static void main(String args[]){
+    System.out.println("===================================================");
+    System.out.println("SERVER UP!");
+    Fabrika f = new Fabrika(new Racunovodstvo(12345), new Proizvodnja());
+    f.getProizvodnju().dodajMasinu(new MasinaZaKonstrukciju("konDRVO100",3000));
+    f.getProizvodnju().dodajMasinu(new MasinaZaKonstrukciju("konPVC100",4000));
+    f.getProizvodnju().dodajMasinu(new MasinaZaStaklo("st100",5000));
+    f.getProizvodnju().dodajMasinu(new MasinaZaMehanizamOtvaranja("mh100",2000));
+    f.getProizvodnju().dodajMasinu(new MasinaZaSklapanje("ass100",3000));
+    
+    while(true){
+      f.getRacunovodstvo().prihvatiZahtjeve();
+    }
+  }
+}

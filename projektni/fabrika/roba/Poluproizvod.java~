@@ -1,0 +1,14 @@
+package fabrika.roba;
+
+public class Poluproizvod{
+  private static int redniBroj = 1000;
+  private String serijskiBroj;
+  
+  public Poluproizvod(){
+    serijskiBroj = "ppr" + redniBroj++;
+  }
+  
+  public String getSerijskiBroj(){
+    return this.serijskiBroj;
+  }
+}

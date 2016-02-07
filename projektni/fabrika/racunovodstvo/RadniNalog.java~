@@ -1,0 +1,26 @@
+package fabrika.racunovodstvo;
+
+public class RadniNalog{
+  private String brojNaloga;
+  private String sadrzaj = "";
+  
+  RadniNalog(String br){
+    brojNaloga = br;
+  }
+  
+  public String getBrNalog(){
+    return this.brojNaloga;
+  }
+  
+  public void dodajLiniju(String s){
+    if (sadrzaj == "")
+      sadrzaj = s;
+    else 
+      sadrzaj = sadrzaj + s;
+  }
+  
+  @Override
+  public String toString(){
+    return sadrzaj;
+  }
+}

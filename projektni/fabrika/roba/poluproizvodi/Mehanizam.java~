@@ -1,0 +1,7 @@
+package fabrika.roba.poluproizvodi;
+
+import fabrika.roba.Poluproizvod;
+
+public class Mehanizam extends Poluproizvod{
+  
+}

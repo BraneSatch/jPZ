@@ -1,0 +1,4 @@
+Proizvod - vrata
+Materijal - drvo
+Vrata imaju sigurnosni mehanizam
+Komada 4

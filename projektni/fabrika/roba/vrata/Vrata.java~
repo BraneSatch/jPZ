@@ -1,0 +1,35 @@
+package fabrika.roba.vrata;
+
+import java.io.Serializable;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
+import fabrika.roba.Proizvod;
+import fabrika.roba.Poluproizvod;
+import fabrika.roba.Materijal;
+
+
+public class Vrata extends Proizvod implements Serializable{
+  private boolean staklo;
+  private boolean resetke;
+  
+  public Vrata(double s, double v, Materijal vM, Poluproizvod k[], boolean imaS, boolean imaR){
+    super(s,v,vM,k);
+    staklo = imaS;
+    resetke = imaR;
+  }
+  
+  public boolean imaResetke(){
+    return this.resetke;
+  }
+  
+  public boolean imaStaklo(){
+    return this.staklo;
+  }
+  
+  private void writeObject(){
+  }
+  
+  private void readObject(){
+  }
+}

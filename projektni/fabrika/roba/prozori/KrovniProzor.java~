@@ -1,0 +1,12 @@
+package fabrika.roba.prozori;
+
+import fabrika.roba.Materijal;
+import fabrika.roba.Poluproizvod;
+
+public class KrovniProzor extends Prozor{
+  
+  public KrovniProzor(double s, double v, Materijal vM, Poluproizvod k[], Roletne r, boolean re, int brKrila){
+    super(s, v, vM, k, r, re, brKrila);
+  }
+  
+}

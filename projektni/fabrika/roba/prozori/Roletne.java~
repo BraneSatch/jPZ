@@ -1,0 +1,14 @@
+package fabrika.roba.prozori;
+
+public class Roletne{
+  private int brojDijelova;
+  
+  public Roletne(int br){
+    brojDijelova = br;
+  }
+  
+  public int getBrojDijelova(){
+    return this.brojDijelova;
+  }
+  
+}

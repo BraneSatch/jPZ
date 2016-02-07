@@ -1,0 +1,44 @@
+package fabrika.racunovodstvo;
+
+import java.net.Socket;
+import java.io.DataOutputStream;
+import java.io.ObjectOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import fabrika.roba.Proizvod;
+
+public class Dostavljac extends Thread{
+  private Socket s;
+  private String brNarudzbe;
+  private ArrayList<Proizvod> p;
+  
+  public Dostavljac(Socket s, String brNarudzbe, ArrayList<Proizvod> p){
+    this.s = s;
+    this.p = p;
+    this.brNarudzbe = brNarudzbe;
+    this.start();
+  }
+  
+  public String getBrNarudzbe(){
+    return this.brNarudzbe;
+  }
+  
+  public Socket getSocket(){
+    return this.s;
+  }
+  
+  @Override
+  public void run(){
+    try{
+      DataOutputStream dos = new DataOutputStream(s.getOutputStream());
+      dos.writeInt(1);
+      dos.writeInt(p.size());
+      ObjectOutputStream oos = new ObjectOutputStream(s.getOutputStream());
+      for(int i = 0; i < p.size(); ++i)
+      oos.writeObject(p.get(i));
+    }catch(IOException e){
+      System.out.println("Dostavljac ne moze predati paket.");
+    }
+  }
+}

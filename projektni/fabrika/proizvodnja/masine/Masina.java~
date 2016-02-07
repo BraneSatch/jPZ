@@ -1,0 +1,30 @@
+package fabrika.proizvodnja.masine;
+
+import java.util.LinkedList;
+import java.io.File;
+
+import fabrika.roba.Proizvod;
+import fabrika.roba.Poluproizvod;
+
+public class Masina implements Runnable{
+  protected String oznaka;
+  protected int brzina;
+  
+  final String s = File.separator;
+  final String putanja = "fabrika" + s + "proizvodnja" + s + "masine" + s;
+  
+  public Masina(String ozn, int br){
+    oznaka = ozn;
+    brzina = br;
+  }
+  
+  public String getOznaka(){
+    return this.oznaka;
+  }
+  
+  public int getBrzina(){
+    return this.brzina;
+  }
+  @Override
+  public void run(){}
+}
