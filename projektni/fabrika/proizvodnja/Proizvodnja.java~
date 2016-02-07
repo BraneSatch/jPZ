@@ -3,6 +3,7 @@ package fabrika.proizvodnja;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.net.Socket;
+import java.io.File;
 
 import fabrika.proizvodnja.masine.Masina;
 import fabrika.proizvodnja.masine.MasinaZaSklapanje;
@@ -28,6 +29,9 @@ public class Proizvodnja extends Thread{
   
   public void dodajMasinu(Masina m){
     masine.add(m);
+    File f = new File(Masina.putanja + m.getOznaka());
+    if (!f.exists())
+      f.mkdir();
   }
   
   private Masina nadjiMasinu(String oznaka){

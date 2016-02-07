@@ -21,10 +21,13 @@ public class MasinaZaStaklo extends Masina{
     try{
       ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File(putanja + "staklo.s")));
       Staklo s = new Staklo();
+      
       PrintWriter pw = new PrintWriter(putanja + this.getOznaka() + File.separator + s.getSerijskiBroj() + ".txt");
       pw.write("Staklo ");
+      
       oos.writeObject(s);
       oos.flush();
+      
       Thread.sleep(brzina);
       oos.close();
       System.out.println("Staklo napravljeno. ");

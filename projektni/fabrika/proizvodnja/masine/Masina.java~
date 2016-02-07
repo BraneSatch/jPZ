@@ -10,8 +10,7 @@ public class Masina implements Runnable{
   protected String oznaka;
   protected int brzina;
   
-  final String s = File.separator;
-  final String putanja = "fabrika" + s + "proizvodnja" + s + "masine" + s;
+  public static final String putanja = "fabrika" + File.separator + "proizvodnja" + File.separator + "masine" + File.separator;
   
   public Masina(String ozn, int br){
     oznaka = ozn;

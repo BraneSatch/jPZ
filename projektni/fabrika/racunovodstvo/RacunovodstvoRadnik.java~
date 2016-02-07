@@ -16,6 +16,7 @@ import java.io.OutputStreamWriter;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Date;
+import java.io.DataOutputStream;
 
 import filijala.Narudzba;
 import fabrika.proizvodnja.Proizvodnja;
@@ -182,8 +183,15 @@ public class RacunovodstvoRadnik extends Thread{
         case 1: case 2:
           prihvatiNalog();
           break;
-        case -1:
+        case -1: case 0:
+          try{
+          DataOutputStream dis = new DataOutputStream(s.getOutputStream());
+          dis.writeInt(-1);
+          dis.flush();
           zatvoriAplikaciju = true;
+        }catch(IOException e){
+          System.out.println();
+        }
           break;
       }
       

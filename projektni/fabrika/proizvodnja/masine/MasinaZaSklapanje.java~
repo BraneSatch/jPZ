@@ -2,6 +2,8 @@ package fabrika.proizvodnja.masine;
 
 import java.util.ArrayList;
 import java.io.File;
+import java.io.PrintWriter;
+import java.io.FileNotFoundException;
 
 import fabrika.roba.Poluproizvod;
 import fabrika.roba.Proizvod;
@@ -29,6 +31,7 @@ public class MasinaZaSklapanje extends Masina{
     
     konstrukcija.delete();
     mehanizam.delete();
+    PrintWriter pw;
     
     File staklo;
     Staklo s;
@@ -61,6 +64,11 @@ public class MasinaZaSklapanje extends Masina{
       }
     }
 
+    try{
+      pw = new PrintWriter(putanja + this.getOznaka() + File.separator + v.getSerijskiBroj() + ".txt");
+    }catch(FileNotFoundException e){
+      System.out.println("Masina " + this.getOznaka() + " nije u stanju da evidentira proizvod " + v.getSerijskiBroj());
+    }
     
     return v;
   }
@@ -83,7 +91,8 @@ public class MasinaZaSklapanje extends Masina{
     konstrukcija.delete();
     mehanizam.delete();
     staklo.delete();
-
+    PrintWriter pw;
+    
     Poluproizvod[] spisak;
     spisak = new Poluproizvod[3];
     spisak[0] = k;
@@ -99,6 +108,12 @@ public class MasinaZaSklapanje extends Masina{
       p = new KrovniProzor(s, v, m, spisak, r, resetke, brKrila);
     }else{
       p = new Prozor(s, v, m, spisak, r, resetke, brKrila);
+    }
+    
+    try{
+      pw = new PrintWriter(putanja + this.getOznaka() + File.separator + p.getSerijskiBroj() + ".txt");
+    }catch(FileNotFoundException e){
+      System.out.println("Masina " + this.getOznaka() + " nije u stanju da evidentira proizvod " + p.getSerijskiBroj());
     }
     
     return p;

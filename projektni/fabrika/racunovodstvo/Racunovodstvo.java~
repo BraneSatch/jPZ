@@ -8,9 +8,10 @@ import java.util.HashMap;
 import filijala.Narudzba;
 import fabrika.proizvodnja.Proizvodnja;
 
-public class Racunovodstvo{
+public class Racunovodstvo extends Thread{
   private ServerSocket ss;
   private Proizvodnja p;
+  private boolean zatvoriFabriku = false;
   
   public Racunovodstvo(int port){
     this.p = p;
@@ -31,6 +32,13 @@ public class Racunovodstvo{
       RacunovodstvoRadnik t = new RacunovodstvoRadnik(s, p);
     }catch(IOException e){
       System.out.println("Server trenutno nije u mogucnosti da obradi korisnicke zahtjeve.");
+    }
+  }
+  
+  @Override
+  public void run(){
+    while(!zatvoriFabriku){
+      this.prihvatiZahtjeve();
     }
   }
 }

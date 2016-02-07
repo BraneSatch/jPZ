@@ -22,8 +22,6 @@ public class Filijala{
     this.ime = ime;
   }
   
-  //public String
-  
   public void posaljiZahtjev(Socket s, Narudzba n){
     try{
       ObjectOutputStream oos = new ObjectOutputStream(s.getOutputStream());
@@ -58,8 +56,8 @@ public class Filijala{
     System.out.println("IZABERITE OPCIJU:");
     System.out.println("1. SLANJE NARUDZBE");
     System.out.println("2. PREGLED SPISKA PROIZVODA");
-    System.out.println("3. PREGLED NARUDZBI ZA ÈEKANJE");
-    System.out.println("4. PREGLED ZAVRŠENIH PROIZVODA");
+    System.out.println("3. PREGLED NARUDZBI ZA CEKANJE");
+    System.out.println("4. PREGLED ZAVRSENIH PROIZVODA");
     System.out.println("0. IZLAZ");
   }
   
@@ -161,7 +159,7 @@ public class Filijala{
     }catch(UnknownHostException e){
       System.out.println("Server trenutno nedostupan. Pokusajte kasnije.");
     }catch(IOException e){
-      System.out.println("Server trenutno nedostupan. Pokusajte kasnije. IOException");
+      System.out.println("Server trenutno nedostupan. Pokusajte kasnije.");
     }
   }
 }

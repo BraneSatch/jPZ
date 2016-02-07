@@ -24,6 +24,7 @@ public class Masina implements Runnable{
   public int getBrzina(){
     return this.brzina;
   }
+  
   @Override
   public void run(){}
 }

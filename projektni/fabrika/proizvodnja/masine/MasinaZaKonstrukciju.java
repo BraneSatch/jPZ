@@ -25,11 +25,14 @@ public class MasinaZaKonstrukciju extends Masina{
        k = new Konstrukcija(Materijal.DRVO);
       else
        k = new Konstrukcija(Materijal.PVC);
+      
       PrintWriter pw = new PrintWriter(putanja + this.getOznaka() + File.separator + k.getSerijskiBroj() + ".txt");
       pw.write("Konstrukcija " + k.getMaterijal());
       pw.close();
+      
       oos.writeObject(k);
       oos.flush();
+      
       Thread.sleep(brzina);
       oos.close();
       System.out.println("Konstrukcija napravljena. ");
