@@ -175,6 +175,7 @@ public class RacunovodstvoRadnik extends Thread{
   public void run(){
     imeFilijale = this.ucitajIme();//PRVI PRIJEM SERVERA
     System.out.println("Filijala " + imeFilijale + " konektovana!");
+    System.out.print("> ");
     int opcija;
     boolean zatvoriAplikaciju = false;
     do{
@@ -189,8 +190,10 @@ public class RacunovodstvoRadnik extends Thread{
           dis.writeInt(-1);
           dis.flush();
           zatvoriAplikaciju = true;
+          System.out.println("Filijala " + imeFilijale + " zavrsila sa radom.");
+          System.out.print("> ");
         }catch(IOException e){
-          System.out.println();
+          System.out.println("Greska sa racunovodstvom");
         }
           break;
       }
