@@ -7,12 +7,18 @@ import java.io.ObjectOutputStream;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 import java.io.BufferedOutputStream;
+import java.io.BufferedInputStream;
 import java.io.PrintWriter;
 import java.io.DataOutputStream;
 import java.io.OutputStreamWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.DataInputStream;
+import java.io.InputStream;
 
 public class Filijala{
   private String ime;
+  private static String putanja = "filijala" + File.separator;
   
   public Filijala(String ime){
     this.ime = ime;
@@ -134,7 +140,7 @@ public class Filijala{
             
             break;
           case 2:
-            f.posaljiOpciju(s, 2);
+
             break;
           case 3:
             f.posaljiOpciju(s, 3);
@@ -159,7 +165,7 @@ public class Filijala{
     }catch(UnknownHostException e){
       System.out.println("Server trenutno nedostupan. Pokusajte kasnije.");
     }catch(IOException e){
-      System.out.println("Server trenutno nedostupan. Pokusajte kasnije.");
+      System.out.println("Server trenutno nedostupan. Pokusajte kasnije. IO");
     }
   }
 }

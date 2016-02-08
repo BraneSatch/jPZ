@@ -206,7 +206,8 @@ public class RacunovodstvoRadnik extends Thread{
         case 1:
           prihvatiNalog();
           break;
-        case 2:
+        case 3:
+          
           break;
           
         case -1: case 0:
