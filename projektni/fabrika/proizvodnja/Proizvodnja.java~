@@ -19,6 +19,7 @@ public class Proizvodnja extends Thread{
   private LinkedList<RadniNalog> redNaloga;
   private Racunovodstvo r;
   private boolean prazanRed;
+  private boolean zatvoriFabriku = false;
   
   public Proizvodnja(){
     masine = new ArrayList<Masina>();
@@ -57,10 +58,14 @@ public class Proizvodnja extends Thread{
     }
   }
   
+  public void zatvori(){
+    this.zatvoriFabriku = true;
+  }
+  
   @Override
   public void run(){
     System.out.println("Proizvodnja radi");
-    while(true){
+    while(!zatvoriFabriku){
       doNothing();
       if (!prazanRed){
         RadniNalog r = redNaloga.poll();

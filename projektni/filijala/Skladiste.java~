@@ -9,6 +9,7 @@ import fabrika.roba.Proizvod;
 
 public class Skladiste extends Thread{
   Socket s;
+  boolean zatvoriRadnju = false;
   
   public Skladiste(Socket s){
     this.s = s;
@@ -34,6 +35,11 @@ public class Skladiste extends Thread{
     return ret;
   }
   
+  public void zatvori(){
+    zatvoriRadnju = true;
+    this.interrupt();
+  }
+  
   private void prihvatiProizvode(){
     try{
       DataInputStream dis = new DataInputStream(s.getInputStream());
@@ -53,8 +59,7 @@ public class Skladiste extends Thread{
   
   @Override
   public void run(){
-    boolean zatvoriAplikaciju = false;
-    while(!zatvoriAplikaciju){
+    while(!zatvoriRadnju){
       doNothing();
       int izbor = prihvatiIzbor();
       switch(izbor){
@@ -62,7 +67,7 @@ public class Skladiste extends Thread{
           prihvatiProizvode();
           break;
         case -1:
-          zatvoriAplikaciju = true;
+          zatvoriRadnju = true;
           break;
       }   
     }

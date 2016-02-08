@@ -11,12 +11,16 @@ import java.util.HashMap;
 import java.io.InputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileInputStream;
 import java.io.BufferedWriter;
 import java.io.OutputStreamWriter;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Date;
 import java.io.DataOutputStream;
+import java.io.BufferedOutputStream;
+import java.io.BufferedInputStream;
+import java.io.OutputStream;
 
 import filijala.Narudzba;
 import fabrika.proizvodnja.Proizvodnja;
@@ -27,7 +31,8 @@ public class RacunovodstvoRadnik extends Thread{
   private Proizvodnja p = null;
   private InputStream in = null;
   private String imeFilijale = null;
-  
+  private boolean zatvoriAplikaciju = false;
+      
   final String sep = File.separator;
   final String putanja = "fabrika" + sep;
   
@@ -38,6 +43,7 @@ public class RacunovodstvoRadnik extends Thread{
       this.in = s.getInputStream();
       this.start();
     }catch(IOException e){
+      zatvoriAplikaciju = true;
       System.out.println("Zahtjev se ne moze obraditi.");
     }
   }
@@ -48,6 +54,7 @@ public class RacunovodstvoRadnik extends Thread{
       DataInputStream br = new DataInputStream(in);
       rez = br.readUTF();
     }catch(IOException e){
+      zatvoriAplikaciju = true;
       System.out.println("Ucitavanje imena neuspijelo! Provjerite konekciju sa filijalom " + imeFilijale + "!");
     }
     return rez;
@@ -59,6 +66,7 @@ public class RacunovodstvoRadnik extends Thread{
       DataInputStream is = new DataInputStream(in);
       rez = is.readInt();
     }catch(IOException e){
+      zatvoriAplikaciju = true;
       System.out.println("Provjerite konekciju sa filijalom " + imeFilijale + "!");
     }
     return rez;
@@ -177,13 +185,15 @@ public class RacunovodstvoRadnik extends Thread{
     System.out.println("Filijala " + imeFilijale + " konektovana!");
     System.out.print("> ");
     int opcija;
-    boolean zatvoriAplikaciju = false;
     do{
       opcija = this.ucitajOpciju();
       switch(opcija){
-        case 1: case 2:
+        case 1:
           prihvatiNalog();
           break;
+        case 2:
+          break;
+          
         case -1: case 0:
           try{
           DataOutputStream dis = new DataOutputStream(s.getOutputStream());
@@ -194,6 +204,7 @@ public class RacunovodstvoRadnik extends Thread{
           System.out.print("> ");
         }catch(IOException e){
           System.out.println("Greska sa racunovodstvom");
+          zatvoriAplikaciju = true;
         }
           break;
       }
