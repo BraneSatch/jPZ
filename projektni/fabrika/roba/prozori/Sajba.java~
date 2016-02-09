@@ -1,0 +1,8 @@
+package fabrika.roba.prozori;
+
+import fabrika.roba.Proizvod;
+
+public class Sajba extends Proizvod{
+  
+  Sajba
+}
