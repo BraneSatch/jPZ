@@ -15,6 +15,11 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.DataInputStream;
 import java.io.InputStream;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.FileReader;
+
+
 
 public class Filijala{
   private String ime;
@@ -62,8 +67,7 @@ public class Filijala{
     System.out.println("IZABERITE OPCIJU:");
     System.out.println("1. SLANJE NARUDZBE");
     System.out.println("2. PREGLED SPISKA PROIZVODA");
-    System.out.println("3. PREGLED NARUDZBI ZA CEKANJE");
-    System.out.println("4. PREGLED ZAVRSENIH PROIZVODA");
+    System.out.println("3. PREGLED ZAVRSENIH PROIZVODA");
     System.out.println("0. IZLAZ");
   }
   
@@ -140,13 +144,16 @@ public class Filijala{
             
             break;
           case 2:
-
+            BufferedReader br = new BufferedReader(new FileReader(putanja + "meni.txt"));
+            String line;
+            System.out.println("FIRMA PROIZVODI:");
+            while((line = br.readLine()) != null){
+              System.out.println(line);
+            }
+            System.out.println("=================================");
             break;
           case 3:
-            f.posaljiOpciju(s, 3);
-            break;
-          case 4:
-            f.posaljiOpciju(s, 4);
+            
             break;
           case 0:
             f.posaljiOpciju(s, 0);

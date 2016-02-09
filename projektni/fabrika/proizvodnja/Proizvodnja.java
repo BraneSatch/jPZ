@@ -11,6 +11,8 @@ import java.io.FileNotFoundException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.IOException;
+import java.io.FileReader;
+import java.io.BufferedReader;
 
 import fabrika.proizvodnja.masine.Masina;
 import fabrika.proizvodnja.masine.MasinaZaSklapanje;
@@ -29,7 +31,7 @@ public class Proizvodnja extends Thread{
   private boolean prazanRed;
   private boolean zatvoriFabriku = false;
   
-  private final String putanja = "fabrika" + File.separator;
+  public static final String putanja = "fabrika" + File.separator;
   
   public Proizvodnja(){
     masine = new ArrayList<Masina>();
@@ -54,15 +56,21 @@ public class Proizvodnja extends Thread{
   }
   
   public synchronized void dodajNalog(RadniNalog r){
-    System.out.println("dodan");
+    //System.out.println("dodan");
     redNaloga.add(r);
     prazanRed = false;
-   
+    try{
+      PrintWriter pw = new PrintWriter(putanja + "cekanje" + File.separator + r.getBrNalog() + ".txt");
+      pw.println(r.getBrNalog());
+      pw.close();
+    }catch(IOException e){
+      System.out.println("Narudzba se ne moze registrovati.");
+    }
   }
   
   private void doNothing(){
     try{
-    this.sleep(50);
+      this.sleep(50);
     }catch(Exception e){
       e.printStackTrace();
     }
@@ -75,30 +83,28 @@ public class Proizvodnja extends Thread{
   @Override
   public void run(){
     System.out.println("Proizvodnja radi");
+    File aktivanFolder = new File(putanja + "aktivan");
+    File cekanjeFolder = new File(putanja + "cekanje");
+    if (!aktivanFolder.exists())
+      aktivanFolder.mkdir();
+    if (!cekanjeFolder.exists())
+      cekanjeFolder.mkdir();
     while(!zatvoriFabriku){
       doNothing();
       if (!prazanRed){
         RadniNalog r = redNaloga.poll();
         
-       
-        File f = new File(putanja + "cekanje" + File.separator + r.getBrNalog());
+        File f = new File(putanja + "cekanje" + File.separator + r.getBrNalog() + ".txt");
+        File aktivan = new File(putanja + "aktivan" + File.separator + r.getBrNalog() + ".txt");
         if (f.exists()){
           try{
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f));
-            Narudzba n = (Narudzba)ois.readObject();
-            File aktivan = new File(putanja + "aktivni" + File.separator + r.getBrNalog());
-            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(aktivan));
-            oos.writeObject(n);
-            oos.close();
-            ois.close();
-          }catch(FileNotFoundException e){
-            System.out.println("Fajl nije pronadjen u folderu cekanje");
+            f.delete();
+            PrintWriter pw = new PrintWriter(aktivan);
+            pw.println(r.getBrNalog());
+            pw.close();
           }catch(IOException e){
             System.out.println("Narudzba nije pronadjena.");
-          }catch(ClassNotFoundException e){
-            System.out.println("Klasa ne postoji.");
           }
-          f.delete();
         }
         
         
@@ -107,7 +113,7 @@ public class Proizvodnja extends Thread{
         gotoviProizvodi.clear();
         
         if (redNaloga.size() == 0) prazanRed = true;
-        System.out.println("usao u red");
+        //System.out.println("usao u red");
         
         String linije[] = r.toString().split(System.lineSeparator());
         
@@ -199,12 +205,9 @@ public class Proizvodnja extends Thread{
           
         }
         
-        File aktivanNalog = new File(putanja + "aktivni" + File.separator + r.getBrNalog());
-        if (aktivanNalog.exists())
-          aktivanNalog.delete();
-        
         //INSTANCIRA SE DOSTAVLJAC KOJI CE PREDATI LISTU PROIZVODA FILIJALI PREMA NALOGU
         Dostavljac dostava = new Dostavljac(r.getSocket(),r.getBrNalog(), gotoviProizvodi);
+        aktivan.delete();
       }
     }
   }

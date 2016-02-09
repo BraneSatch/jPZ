@@ -4,6 +4,13 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.net.Socket;
 import java.io.File;
+import java.io.PrintWriter;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileNotFoundException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.IOException;
 
 import fabrika.proizvodnja.masine.Masina;
 import fabrika.proizvodnja.masine.MasinaZaSklapanje;
@@ -13,6 +20,7 @@ import fabrika.roba.Proizvod;
 import fabrika.roba.vrata.*;
 import fabrika.roba.prozori.*;
 import fabrika.racunovodstvo.*;
+import filijala.Narudzba;
 
 public class Proizvodnja extends Thread{
   private ArrayList<Masina> masine;
@@ -20,6 +28,8 @@ public class Proizvodnja extends Thread{
   private Racunovodstvo r;
   private boolean prazanRed;
   private boolean zatvoriFabriku = false;
+  
+  private final String putanja = "fabrika" + File.separator;
   
   public Proizvodnja(){
     masine = new ArrayList<Masina>();
@@ -47,7 +57,7 @@ public class Proizvodnja extends Thread{
     System.out.println("dodan");
     redNaloga.add(r);
     prazanRed = false;
-    
+   
   }
   
   private void doNothing(){
@@ -69,6 +79,29 @@ public class Proizvodnja extends Thread{
       doNothing();
       if (!prazanRed){
         RadniNalog r = redNaloga.poll();
+        
+       
+        File f = new File(putanja + "cekanje" + File.separator + r.getBrNalog());
+        if (f.exists()){
+          try{
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f));
+            Narudzba n = (Narudzba)ois.readObject();
+            File aktivan = new File(putanja + "aktivni" + File.separator + r.getBrNalog());
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(aktivan));
+            oos.writeObject(n);
+            oos.close();
+            ois.close();
+          }catch(FileNotFoundException e){
+            System.out.println("Fajl nije pronadjen u folderu cekanje");
+          }catch(IOException e){
+            System.out.println("Narudzba nije pronadjena.");
+          }catch(ClassNotFoundException e){
+            System.out.println("Klasa ne postoji.");
+          }
+          f.delete();
+        }
+        
+        
         
         ArrayList<Proizvod> gotoviProizvodi = new ArrayList<Proizvod>();
         gotoviProizvodi.clear();
@@ -165,6 +198,10 @@ public class Proizvodnja extends Thread{
           }
           
         }
+        
+        File aktivanNalog = new File(putanja + "aktivni" + File.separator + r.getBrNalog());
+        if (aktivanNalog.exists())
+          aktivanNalog.delete();
         
         //INSTANCIRA SE DOSTAVLJAC KOJI CE PREDATI LISTU PROIZVODA FILIJALI PREMA NALOGU
         Dostavljac dostava = new Dostavljac(r.getSocket(),r.getBrNalog(), gotoviProizvodi);

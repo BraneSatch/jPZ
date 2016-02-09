@@ -28,8 +28,8 @@ public class Fabrika{
     return this.r;
   }
   
-  public boolean zatvoriFabriku(){
-    return this.zatvori;
+  public void zatvoriFabriku(){
+    this.zatvori = true;
   }
   
   private int prikaziMeni(){
@@ -37,7 +37,7 @@ public class Fabrika{
     System.out.println("1.PRIKAZI ZAHTJEVE U OBRADI");
     System.out.println("2.PRIKAZI GOTOVE PROIZVODE");
     System.out.println("3.PRIKAZI ZAHTJEVE U REDU");
-    System.out.println("CTRL-C ZA PREKID RADA FABRIKE");
+    System.out.println("0.PREKID RADA FABRIKE");
     Scanner ulaz = new Scanner(System.in);
     do{
       System.out.print("> ");
@@ -49,6 +49,8 @@ public class Fabrika{
           break;
         case 3:
           break;
+        case 0:
+          return 0;
         default:
           System.out.println("Birali ste nekorektnu opciju");
           break;
@@ -69,13 +71,18 @@ public class Fabrika{
     System.out.println("Masine dodane!");
     
     f.getRacunovodstvo().start();//POKRENI RACUNOVODSTVO
-    
+
     int izbor;
-    while(!f.zatvoriFabriku()){
+    while(!f.zatvori){
       izbor = f.prikaziMeni();
       switch(izbor){
-        
+        case 0:
+          f.getRacunovodstvo().zatvori();
+          f.getProizvodnju().zatvori();
+          f.zatvoriFabriku();
+          break;
       }
     }
+    System.out.println("Fabrika zatvorena!");
   }
 }

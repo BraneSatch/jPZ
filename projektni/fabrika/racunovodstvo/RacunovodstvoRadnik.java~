@@ -21,6 +21,7 @@ import java.io.DataOutputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedInputStream;
 import java.io.OutputStream;
+import java.io.ObjectOutputStream;
 
 import filijala.Narudzba;
 import fabrika.proizvodnja.Proizvodnja;
@@ -34,7 +35,7 @@ public class RacunovodstvoRadnik extends Thread{
   private boolean zatvoriAplikaciju = false;
       
   final String sep = File.separator;
-  final String putanja = "fabrika" + sep;
+  final String putanja = "fabrika" + File.separator;
   
   public RacunovodstvoRadnik(Socket s, Proizvodnja p){
     try{
@@ -42,6 +43,12 @@ public class RacunovodstvoRadnik extends Thread{
       this.p = p;
       this.in = s.getInputStream();
       this.start();
+      File akt = new File(putanja + "aktivni");
+      File cekanje = new File(putanja + "cekanje");
+      if (!(akt.exists()))
+        akt.mkdir();
+      if (!(cekanje.exists()))
+        cekanje.mkdir();
     }catch(IOException e){
       zatvoriAplikaciju = true;
       System.out.println("Zahtjev se ne moze obraditi.");
@@ -134,6 +141,14 @@ public class RacunovodstvoRadnik extends Thread{
       RadniNalog r = this.napraviNalog(s, n);
       System.out.println(r);
       p.dodajNalog(r);
+      try{
+        File fajl = new File(putanja + "cekanje" + File.separator + r.getBrNalog());
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fajl));
+        oos.writeObject(n);
+        oos.close();
+      }catch(FileNotFoundException e){
+        System.out.println("Ne moze");
+      }
     }catch(IOException e){
       System.out.println("Ucitavanje naloga neuspijelo! Provjerite konekciju sa filijalom " + imeFilijale + "!");
     }catch(ClassNotFoundException e){
@@ -191,7 +206,8 @@ public class RacunovodstvoRadnik extends Thread{
         case 1:
           prihvatiNalog();
           break;
-        case 2:
+        case 3:
+          
           break;
           
         case -1: case 0:

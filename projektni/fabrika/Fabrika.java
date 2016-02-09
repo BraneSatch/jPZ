@@ -2,6 +2,7 @@ package fabrika;
 
 import java.util.Scanner;
 import java.net.Socket;
+import java.io.File;
 
 import fabrika.proizvodnja.Proizvodnja;
 import fabrika.racunovodstvo.Racunovodstvo;
@@ -71,7 +72,7 @@ public class Fabrika{
     System.out.println("Masine dodane!");
     
     f.getRacunovodstvo().start();//POKRENI RACUNOVODSTVO
-
+    
     int izbor;
     while(!f.zatvori){
       izbor = f.prikaziMeni();
@@ -81,6 +82,42 @@ public class Fabrika{
           f.getProizvodnju().zatvori();
           f.zatvoriFabriku();
           break;
+        case 1:
+          try{
+          File aktivan = new File(Proizvodnja.putanja + "aktivan").listFiles()[0];
+          String ime = aktivan.getName();
+          int pozicija = ime.lastIndexOf('.');
+          System.out.println("Narudzba u obradi: " + ime.substring(0,pozicija)); 
+        }catch(ArrayIndexOutOfBoundsException e){
+          System.out.println("Trenutno nema aktivnih narudzbi!");
+        }
+          break;
+        case 2:
+          File[] nalozi = new File(Proizvodnja.putanja + "nalozi").listFiles();
+          if (nalozi.length > 0){
+            System.out.println("Zavrseni nalozi: ");
+            for(File fa: nalozi){
+              String ime = fa.getName();
+              int pozicija = ime.lastIndexOf('.');
+              System.out.println(ime.substring(0,pozicija));
+            }
+          }else{
+            System.out.println("Trenutno nema gotovih proizvoda!");
+          }
+        break;
+        case 3:
+          File[] redCekanja = new File(Proizvodnja.putanja + "cekanje").listFiles();
+          if (redCekanja.length > 0){
+            System.out.println("Narudzbe u redu: ");
+            for(File fa: redCekanja){
+              String ime = fa.getName();
+              int pozicija = ime.lastIndexOf('.');
+              System.out.println(ime.substring(0,pozicija));
+            }
+          }else{
+            System.out.println("Trenutno nema naloga u redu!");
+          }
+        break;
       }
     }
     System.out.println("Fabrika zatvorena!");

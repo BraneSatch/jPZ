@@ -22,10 +22,13 @@ public class MasinaZaMehanizamOtvaranja extends Masina{
       String s = File.separator;
       ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File(putanja + "mehanizam.s")));
       Mehanizam m = new Mehanizam();
+      
       PrintWriter pw = new PrintWriter(putanja + this.getOznaka() + File.separator + m.getSerijskiBroj() + ".txt");
       pw.write("Mehanizam");
+      
       oos.writeObject(m);
       oos.flush();
+      
       Thread.sleep(brzina);
       oos.close();
       System.out.println("Mehanizam napravljen. ");

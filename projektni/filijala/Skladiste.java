@@ -27,9 +27,9 @@ public class Skladiste extends Thread{
   private void doNothing(){
     try{
       Thread.sleep(50);
-      }catch(InterruptedException e){
-        e.printStackTrace();
-      }
+    }catch(InterruptedException e){
+      e.printStackTrace();
+    }
   }
   
   private int prihvatiIzbor(){
@@ -50,12 +50,11 @@ public class Skladiste extends Thread{
   
   private void prihvatiProizvode(){
     try{
-
+      
       DataInputStream dis = new DataInputStream(s.getInputStream());
       BufferedReader br = new BufferedReader(new InputStreamReader(s.getInputStream()));
       InputStream is = s.getInputStream();
       
-     
       String brojNarudzbe = dis.readUTF();//PRIHVATA BROJ NARUDZBE
       int broj = dis.readInt();//CITA BROJ PROIZVODA
       File folder = new File(putanja + brojNarudzbe);
@@ -66,13 +65,13 @@ public class Skladiste extends Thread{
         Proizvod p = (Proizvod)ois.readObject();
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(putanja + brojNarudzbe + File.separator + p.getSerijskiBroj()));
         oos.writeObject(p);
-        System.out.println(p.getSerijskiBroj());
+        //System.out.println(p.getSerijskiBroj());
       }
       
       int len;
       int ocitano = 0;
       
-
+      
       FileOutputStream fos = new FileOutputStream(putanja + brojNarudzbe + File.separator + "lista" + brojNarudzbe + ".zip");
       String ocekivano = br.readLine();//PRIHVATA DUZINU FAJLA
       //System.out.println(brojNarudzbe);
@@ -88,7 +87,6 @@ public class Skladiste extends Thread{
     }catch(ClassNotFoundException e){
       System.out.println("PAZNJA!!!!!!Ovo se ne moze pojaviti");
     }catch(IOException e){
-      e.printStackTrace();
       System.out.println("Veza sa serverom diskonektovana! Proizvodi nisu kompletirani!");
     }
   }
@@ -101,6 +99,9 @@ public class Skladiste extends Thread{
       switch(izbor){
         case 1:
           prihvatiProizvode();
+          break;
+        case 5:
+          System.out.println("Proizvodnja trazi poboljsanje prodaje!");
           break;
         case -1:
           zatvoriRadnju = true;

@@ -74,7 +74,7 @@ public class Dostavljac extends Thread{
       byte[] buffer = new byte[1024 * 1024];
       int len;
       while ((len = fis.read(buffer)) > 0) {
-       zip.write(buffer, 0, len);
+        zip.write(buffer, 0, len);
       }
       fis.close();
       zip.closeEntry();
@@ -87,7 +87,7 @@ public class Dostavljac extends Thread{
       p.println(zipovanSpisak.length());
       p.flush();
       InputStream is = new FileInputStream(zipovanSpisak);
-
+      //SALJE FAJL
       while((len = is.read(buffer)) > 0){
         os.write(buffer, 0, len);
       }

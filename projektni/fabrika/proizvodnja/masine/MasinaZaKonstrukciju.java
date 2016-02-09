@@ -22,9 +22,9 @@ public class MasinaZaKonstrukciju extends Masina{
       ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File(putanja + "konstrukcija.s")));
       Konstrukcija k;
       if (oznaka.contains("DRVO"))
-       k = new Konstrukcija(Materijal.DRVO);
+        k = new Konstrukcija(Materijal.DRVO);
       else
-       k = new Konstrukcija(Materijal.PVC);
+        k = new Konstrukcija(Materijal.PVC);
       
       PrintWriter pw = new PrintWriter(putanja + this.getOznaka() + File.separator + k.getSerijskiBroj() + ".txt");
       pw.write("Konstrukcija " + k.getMaterijal());
@@ -35,7 +35,7 @@ public class MasinaZaKonstrukciju extends Masina{
       
       Thread.sleep(brzina);
       oos.close();
-      System.out.println("Konstrukcija napravljena. ");
+      //System.out.println("Konstrukcija napravljena. ");
     }catch(IOException e){
       //e.printStackTrace();
       System.out.println("Masina za konstrukciju ne moze napraviti.");

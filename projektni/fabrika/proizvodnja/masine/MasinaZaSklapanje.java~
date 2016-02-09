@@ -25,7 +25,7 @@ public class MasinaZaSklapanje extends Masina{
     
     File konstrukcija = new File(putanja + "konstrukcija.s");
     Konstrukcija k = new Konstrukcija(m);
-    //System.out.println(k.getSerijskiBroj());                     
+    
     File mehanizam = new File(putanja + "mehanizam.s");
     Mehanizam me = new Mehanizam();
     

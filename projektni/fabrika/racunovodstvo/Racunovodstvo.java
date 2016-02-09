@@ -29,7 +29,7 @@ public class Racunovodstvo extends Thread{
   
   public void zatvori(){
     try{
-    ss.close();
+      ss.close();
     }catch(IOException e){
     }
   }

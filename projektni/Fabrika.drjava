@@ -3,120 +3,124 @@
   <project autorefresh="false" root="" work="">
     <createjar file=""/>
     <source>
-      <file active="true" name="fabrika/racunovodstvo/Dostavljac.java" package="fabrika.racunovodstvo" timestamp="08-Feb-2016 20:26:36">
-        <select from="2706" to="2706"/>
-        <scroll column="974" row="0"/>
+      <file active="true" name="fabrika/racunovodstvo/Upozorenje.java" package="fabrika.racunovodstvo" timestamp="09-Feb-2016 15:34:02">
+        <select from="925" to="925"/>
+        <scroll column="298" row="0"/>
       </file>
       <file name="Test.java" package="" timestamp="11-Jan-2016 23:09:03">
-        <select from="2706" to="2706"/>
-        <scroll column="974" row="0"/>
+        <select from="925" to="925"/>
+        <scroll column="298" row="0"/>
       </file>
       <file name="fabrika/racunovodstvo/RadniNalog.java" package="fabrika.racunovodstvo" timestamp="05-Jan-2016 13:17:22">
-        <select from="2706" to="2706"/>
-        <scroll column="974" row="0"/>
+        <select from="925" to="925"/>
+        <scroll column="298" row="0"/>
       </file>
       <file name="fabrika/roba/Materijal.java" package="fabrika.roba" timestamp="26-Dec-2015 19:49:27">
-        <select from="2706" to="2706"/>
-        <scroll column="974" row="0"/>
+        <select from="925" to="925"/>
+        <scroll column="298" row="0"/>
       </file>
       <file name="fabrika/roba/Poluproizvod.java" package="fabrika.roba" timestamp="04-Jan-2016 17:40:20">
-        <select from="2706" to="2706"/>
-        <scroll column="974" row="0"/>
+        <select from="925" to="925"/>
+        <scroll column="298" row="0"/>
       </file>
       <file name="fabrika/roba/poluproizvodi/Mehanizam.java" package="fabrika.roba.poluproizvodi" timestamp="09-Jan-2016 16:11:08">
-        <select from="2706" to="2706"/>
-        <scroll column="974" row="0"/>
+        <select from="925" to="925"/>
+        <scroll column="298" row="0"/>
       </file>
       <file name="fabrika/roba/vrata/Vrata.java" package="fabrika.roba.vrata" timestamp="09-Jan-2016 18:59:15">
-        <select from="2706" to="2706"/>
-        <scroll column="974" row="0"/>
+        <select from="925" to="925"/>
+        <scroll column="298" row="0"/>
       </file>
       <file name="fabrika/roba/poluproizvodi/KrovniMehanizam.java" package="fabrika.roba.poluproizvodi" timestamp="09-Jan-2016 19:17:50">
-        <select from="2706" to="2706"/>
-        <scroll column="974" row="0"/>
+        <select from="925" to="925"/>
+        <scroll column="298" row="0"/>
       </file>
       <file name="fabrika/roba/poluproizvodi/Staklo.java" package="fabrika.roba.poluproizvodi" timestamp="09-Jan-2016 19:18:07">
-        <select from="2706" to="2706"/>
-        <scroll column="974" row="0"/>
+        <select from="925" to="925"/>
+        <scroll column="298" row="0"/>
       </file>
       <file name="fabrika/roba/prozori/KrovniProzor.java" package="fabrika.roba.prozori" timestamp="09-Jan-2016 19:18:24">
-        <select from="2706" to="2706"/>
-        <scroll column="974" row="0"/>
+        <select from="925" to="925"/>
+        <scroll column="298" row="0"/>
       </file>
       <file name="fabrika/roba/prozori/Prozor.java" package="fabrika.roba.prozori" timestamp="09-Jan-2016 19:18:46">
-        <select from="2706" to="2706"/>
-        <scroll column="974" row="0"/>
+        <select from="925" to="925"/>
+        <scroll column="298" row="0"/>
       </file>
       <file name="fabrika/roba/prozori/Roletne.java" package="fabrika.roba.prozori" timestamp="09-Jan-2016 19:19:02">
-        <select from="2706" to="2706"/>
-        <scroll column="974" row="0"/>
+        <select from="925" to="925"/>
+        <scroll column="298" row="0"/>
       </file>
       <file name="fabrika/roba/vrata/SigurnosnaVrata.java" package="fabrika.roba.vrata" timestamp="09-Jan-2016 19:19:21">
-        <select from="2706" to="2706"/>
-        <scroll column="974" row="0"/>
+        <select from="925" to="925"/>
+        <scroll column="298" row="0"/>
       </file>
       <file name="fabrika/roba/Proizvod.java" package="fabrika.roba" timestamp="22-Jan-2016 19:24:23">
-        <select from="2706" to="2706"/>
-        <scroll column="974" row="0"/>
-      </file>
-      <file name="filijala/Narudzba.java" package="filijala" timestamp="22-Jan-2016 21:53:17">
-        <select from="2706" to="2706"/>
-        <scroll column="974" row="0"/>
+        <select from="925" to="925"/>
+        <scroll column="298" row="0"/>
       </file>
       <file name="fabrika/roba/poluproizvodi/Konstrukcija.java" package="fabrika.roba.poluproizvodi" timestamp="06-Feb-2016 22:59:44">
-        <select from="2706" to="2706"/>
-        <scroll column="974" row="0"/>
-      </file>
-      <file name="fabrika/Fabrika.java" package="fabrika" timestamp="08-Feb-2016 17:47:48">
-        <select from="2706" to="2706"/>
-        <scroll column="974" row="0"/>
+        <select from="925" to="925"/>
+        <scroll column="298" row="0"/>
       </file>
       <file name="fabrika/proizvodnja/masine/Masina.java" package="fabrika.proizvodnja.masine" timestamp="08-Feb-2016 17:47:48">
-        <select from="2706" to="2706"/>
-        <scroll column="974" row="0"/>
+        <select from="925" to="925"/>
+        <scroll column="298" row="0"/>
       </file>
-      <file name="fabrika/proizvodnja/masine/MasinaZaKonstrukciju.java" package="fabrika.proizvodnja.masine" timestamp="08-Feb-2016 17:47:48">
-        <select from="2706" to="2706"/>
-        <scroll column="974" row="0"/>
+      <file name="filijala/Narudzba.java" package="filijala" timestamp="09-Feb-2016 14:04:04">
+        <select from="925" to="925"/>
+        <scroll column="298" row="0"/>
       </file>
-      <file name="fabrika/proizvodnja/masine/MasinaZaMehanizamOtvaranja.java" package="fabrika.proizvodnja.masine" timestamp="08-Feb-2016 17:47:48">
-        <select from="2706" to="2706"/>
-        <scroll column="974" row="0"/>
+      <file name="fabrika/racunovodstvo/Racunovodstvo.java" package="fabrika.racunovodstvo" timestamp="09-Feb-2016 14:04:04">
+        <select from="925" to="925"/>
+        <scroll column="298" row="0"/>
       </file>
-      <file name="fabrika/proizvodnja/masine/MasinaZaSklapanje.java" package="fabrika.proizvodnja.masine" timestamp="08-Feb-2016 17:47:48">
-        <select from="2706" to="2706"/>
-        <scroll column="974" row="0"/>
+      <file name="fabrika/racunovodstvo/Dostavljac.java" package="fabrika.racunovodstvo" timestamp="09-Feb-2016 14:04:04">
+        <select from="925" to="925"/>
+        <scroll column="298" row="0"/>
       </file>
-      <file name="fabrika/proizvodnja/masine/MasinaZaStaklo.java" package="fabrika.proizvodnja.masine" timestamp="08-Feb-2016 17:47:48">
-        <select from="2706" to="2706"/>
-        <scroll column="974" row="0"/>
+      <file name="fabrika/proizvodnja/masine/MasinaZaSklapanje.java" package="fabrika.proizvodnja.masine" timestamp="09-Feb-2016 14:04:14">
+        <select from="925" to="925"/>
+        <scroll column="298" row="0"/>
       </file>
-      <file name="fabrika/racunovodstvo/Racunovodstvo.java" package="fabrika.racunovodstvo" timestamp="08-Feb-2016 17:47:48">
-        <select from="2706" to="2706"/>
-        <scroll column="974" row="0"/>
+      <file name="fabrika/proizvodnja/masine/MasinaZaMehanizamOtvaranja.java" package="fabrika.proizvodnja.masine" timestamp="09-Feb-2016 15:01:53">
+        <select from="925" to="925"/>
+        <scroll column="298" row="0"/>
       </file>
-      <file name="fabrika/proizvodnja/Proizvodnja.java" package="fabrika.proizvodnja" timestamp="08-Feb-2016 18:33:54">
-        <select from="2706" to="2706"/>
-        <scroll column="974" row="0"/>
+      <file name="fabrika/proizvodnja/masine/MasinaZaKonstrukciju.java" package="fabrika.proizvodnja.masine" timestamp="09-Feb-2016 15:01:53">
+        <select from="925" to="925"/>
+        <scroll column="298" row="0"/>
       </file>
-      <file name="filijala/Skladiste.java" package="filijala" timestamp="08-Feb-2016 20:27:58">
-        <select from="2706" to="2706"/>
-        <scroll column="974" row="0"/>
+      <file name="fabrika/proizvodnja/masine/MasinaZaStaklo.java" package="fabrika.proizvodnja.masine" timestamp="09-Feb-2016 15:01:53">
+        <select from="925" to="925"/>
+        <scroll column="298" row="0"/>
       </file>
-      <file name="fabrika/racunovodstvo/RacunovodstvoRadnik.java" package="fabrika.racunovodstvo" timestamp="08-Feb-2016 20:39:05">
-        <select from="2706" to="2706"/>
-        <scroll column="974" row="0"/>
+      <file name="fabrika/proizvodnja/Proizvodnja.java" package="fabrika.proizvodnja" timestamp="09-Feb-2016 15:04:36">
+        <select from="925" to="925"/>
+        <scroll column="298" row="0"/>
       </file>
-      <file name="filijala/Filijala.java" package="filijala" timestamp="08-Feb-2016 20:42:38">
-        <select from="2706" to="2706"/>
-        <scroll column="974" row="0"/>
+      <file name="fabrika/Fabrika.java" package="fabrika" timestamp="09-Feb-2016 15:14:56">
+        <select from="925" to="925"/>
+        <scroll column="298" row="0"/>
+      </file>
+      <file name="filijala/Filijala.java" package="filijala" timestamp="09-Feb-2016 15:26:55">
+        <select from="925" to="925"/>
+        <scroll column="298" row="0"/>
+      </file>
+      <file name="fabrika/racunovodstvo/RacunovodstvoRadnik.java" package="fabrika.racunovodstvo" timestamp="09-Feb-2016 15:33:53">
+        <select from="925" to="925"/>
+        <scroll column="298" row="0"/>
+      </file>
+      <file name="filijala/Skladiste.java" package="filijala" timestamp="09-Feb-2016 15:34:13">
+        <select from="925" to="925"/>
+        <scroll column="298" row="0"/>
       </file>
     </source>
     <included/>
     <excluded/>
     <collapsed>
+      <path name="./[ Source Files ]/fabrika/proizvodnja/masine/"/>
       <path name="./[ Source Files ]/fabrika/proizvodnja/"/>
-      <path name="./[ Source Files ]/fabrika/racunovodstvo/"/>
       <path name="./[ Source Files ]/fabrika/roba/poluproizvodi/"/>
       <path name="./[ Source Files ]/fabrika/roba/prozori/"/>
       <path name="./[ Source Files ]/fabrika/roba/vrata/"/>

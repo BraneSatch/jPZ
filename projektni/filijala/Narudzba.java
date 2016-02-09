@@ -15,7 +15,7 @@ public class Narudzba implements Serializable{
     /*
      * vrata#visina#sirina#materijal#ima_li_staklo#ima_li_resetke#jesu_li_sigurnosna#komada
      * prozor#visina#sirina#materijal#ima_li_roletne#ima_li_resetke#da_li_je_krovni#komada
-    */
+     */
     if ("vrata".equals(niz[0]))
       sadrzaj += "vrata#" + niz[1] + "#" + niz[2] + "#" + niz[3].toLowerCase() + "#" + niz[4] + "#" + niz[5] + "#" + niz[6] + "#" + niz[7];
     else if ("prozor".equals(niz[0]))

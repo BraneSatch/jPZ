@@ -1,0 +1,6 @@
+package fabrika.racunovodstvo;
+
+import java.util.Date;
+
+public class Upozorenje extends Thread{
+}

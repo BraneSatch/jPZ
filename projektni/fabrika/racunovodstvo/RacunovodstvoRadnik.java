@@ -33,7 +33,7 @@ public class RacunovodstvoRadnik extends Thread{
   private InputStream in = null;
   private String imeFilijale = null;
   private boolean zatvoriAplikaciju = false;
-      
+  
   final String sep = File.separator;
   final String putanja = "fabrika" + File.separator;
   
@@ -81,57 +81,58 @@ public class RacunovodstvoRadnik extends Thread{
   
   private void sacuvajNalog(Narudzba n){
     try{
-    File folder = new File(putanja + "nalozi");
-    if (!folder.exists())
-      folder.mkdir();
-    
-    PrintWriter pw = new PrintWriter(new BufferedWriter(new OutputStreamWriter(new FileOutputStream(putanja + "nalozi" + sep + n.getBrojNarudzbe() + ".txt"))));
-    String niz[] = n.toString().split("#");
-    if ("vrata".equals(niz[0])){
-      pw.println("Proizvod - vrata");
+      File folder = new File(putanja + "nalozi");
+      if (!folder.exists())
+        folder.mkdir();
       
-      if ("drvo".equals(niz[3]))
-        pw.println("Materijal - drvo");
-      else
-        pw.println("Materijal - pvc");
-      
-      if ("da".equals(niz[4]))
-        pw.println("Imaju staklo");
-      
-      if ("da".equals(niz[5]))
-        pw.println("Imaju resetke");
-      
-      if ("da".equals(niz[6]))
-        pw.println("Vrata imaju sigurnosni mehanizam");
-
+      PrintWriter pw = new PrintWriter(new BufferedWriter(new OutputStreamWriter(new FileOutputStream(putanja + "nalozi" + sep + n.getBrojNarudzbe() + ".txt"))));
+      String niz[] = n.toString().split("#");
+      if ("vrata".equals(niz[0])){
+        pw.println("Proizvod - vrata");
+        
+        if ("drvo".equals(niz[3]))
+          pw.println("Materijal - drvo");
+        else
+          pw.println("Materijal - pvc");
+        
+        if ("da".equals(niz[4]))
+          pw.println("Imaju staklo");
+        
+        if ("da".equals(niz[5]))
+          pw.println("Imaju resetke");
+        
+        if ("da".equals(niz[6]))
+          pw.println("Vrata imaju sigurnosni mehanizam");
+        
         pw.println("Komada " + niz[7]);
-      
-    }
-    if ("prozor".equals(niz[0])){
-      pw.println("Proizvod: Prozor");
-      
-      if ("drvo".equals(niz[3]))
-        pw.println("Materijal - drvo");
-      else
-        pw.println("Materijal - pvc");
-      
-      if ("da".equals(niz[4]))
-        pw.println("Imaju roletne");
-      
-      if ("da".equals(niz[5]))
-        pw.println("Imaju resetke");
-      
-      if ("da".equals(niz[6]))
-        pw.println("Prozori su krovni");
-
+        
+      }
+      if ("prozor".equals(niz[0])){
+        pw.println("Proizvod: Prozor");
+        
+        if ("drvo".equals(niz[3]))
+          pw.println("Materijal - drvo");
+        else
+          pw.println("Materijal - pvc");
+        
+        if ("da".equals(niz[4]))
+          pw.println("Imaju roletne");
+        
+        if ("da".equals(niz[5]))
+          pw.println("Imaju resetke");
+        
+        if ("da".equals(niz[6]))
+          pw.println("Prozori su krovni");
+        
         pw.println("Komada " + niz[7]);
-    }
-    
-    pw.close();
+      }
+      
+      pw.close();
     }catch(FileNotFoundException e){
       System.out.println("Nalog broj " + n.getBrojNarudzbe() + " se ne moze sacuvati!");
     }
   }
+  
   
   private void prihvatiNalog(){
     try{
@@ -139,16 +140,8 @@ public class RacunovodstvoRadnik extends Thread{
       Narudzba n = (Narudzba)ois.readObject();
       this.sacuvajNalog(n);
       RadniNalog r = this.napraviNalog(s, n);
-      System.out.println(r);
+      //System.out.println(r);
       p.dodajNalog(r);
-      try{
-        File fajl = new File(putanja + "cekanje" + File.separator + r.getBrNalog());
-        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fajl));
-        oos.writeObject(n);
-        oos.close();
-      }catch(FileNotFoundException e){
-        System.out.println("Ne moze");
-      }
     }catch(IOException e){
       System.out.println("Ucitavanje naloga neuspijelo! Provjerite konekciju sa filijalom " + imeFilijale + "!");
     }catch(ClassNotFoundException e){
@@ -199,30 +192,29 @@ public class RacunovodstvoRadnik extends Thread{
     imeFilijale = this.ucitajIme();//PRVI PRIJEM SERVERA
     System.out.println("Filijala " + imeFilijale + " konektovana!");
     System.out.print("> ");
+    Upozorenje uprozorivac = new Upozorenje(s);
     int opcija;
     do{
       opcija = this.ucitajOpciju();
       switch(opcija){
         case 1:
+          uprozorivac.refresh();
           prihvatiNalog();
           break;
-        case 3:
-          
-          break;
-          
         case -1: case 0:
           try{
           DataOutputStream dis = new DataOutputStream(s.getOutputStream());
           dis.writeInt(-1);
           dis.flush();
           zatvoriAplikaciju = true;
+          uprozorivac.zatvori();
           System.out.println("Filijala " + imeFilijale + " zavrsila sa radom.");
           System.out.print("> ");
         }catch(IOException e){
           System.out.println("Greska sa racunovodstvom");
           zatvoriAplikaciju = true;
         }
-          break;
+        break;
       }
       
     }while(!zatvoriAplikaciju);
