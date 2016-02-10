@@ -27,7 +27,6 @@ import filijala.Narudzba;
 public class Proizvodnja extends Thread{
   private ArrayList<Masina> masine;
   private LinkedList<RadniNalog> redNaloga;
-  private Racunovodstvo r;
   private boolean prazanRed;
   private boolean zatvoriFabriku = false;
   
@@ -83,14 +82,17 @@ public class Proizvodnja extends Thread{
   @Override
   public void run(){
     System.out.println("Proizvodnja radi");
+    
     File aktivanFolder = new File(putanja + "aktivan");
     File cekanjeFolder = new File(putanja + "cekanje");
+    
     if (!aktivanFolder.exists())
       aktivanFolder.mkdir();
     if (!cekanjeFolder.exists())
       cekanjeFolder.mkdir();
+    
     while(!zatvoriFabriku){
-      doNothing();
+      //doNothing();
       if (!prazanRed){
         RadniNalog r = redNaloga.poll();
         
@@ -107,13 +109,10 @@ public class Proizvodnja extends Thread{
           }
         }
         
-        
-        
         ArrayList<Proizvod> gotoviProizvodi = new ArrayList<Proizvod>();
         gotoviProizvodi.clear();
         
         if (redNaloga.size() == 0) prazanRed = true;
-        //System.out.println("usao u red");
         
         String linije[] = r.toString().split(System.lineSeparator());
         

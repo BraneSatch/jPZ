@@ -31,7 +31,7 @@ public class MasinaZaMehanizamOtvaranja extends Masina{
       
       Thread.sleep(brzina);
       oos.close();
-      System.out.println("Mehanizam napravljen. ");
+      //System.out.println("Mehanizam napravljen. ");
     }catch(IOException e){
       //e.printStackTrace();
       System.out.println("Masina za mehanizam ne moze napraviti.");

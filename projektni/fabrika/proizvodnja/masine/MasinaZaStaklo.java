@@ -10,10 +10,14 @@ import fabrika.roba.poluproizvodi.Staklo;
 import fabrika.roba.Poluproizvod;
 import fabrika.roba.Materijal;
 
-public class MasinaZaStaklo extends Masina{
+public class MasinaZaStaklo extends Masina implements Testable{
   
   public MasinaZaStaklo(String ozn, int br){
     super(ozn, br);
+  }
+  
+  @Override
+  public void testiraj(Poluproizvod p){
   }
   
   @Override
@@ -21,6 +25,8 @@ public class MasinaZaStaklo extends Masina{
     try{
       ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File(putanja + "staklo.s")));
       Staklo s = new Staklo();
+      
+      testiraj(s);
       
       PrintWriter pw = new PrintWriter(putanja + this.getOznaka() + File.separator + s.getSerijskiBroj() + ".txt");
       pw.write("Staklo ");

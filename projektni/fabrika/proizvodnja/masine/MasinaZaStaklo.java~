@@ -16,7 +16,7 @@ public class MasinaZaStaklo extends Masina{
     super(ozn, br);
   }
   
-   @Override
+  @Override
   public void run(){
     try{
       ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File(putanja + "staklo.s")));
@@ -30,7 +30,7 @@ public class MasinaZaStaklo extends Masina{
       
       Thread.sleep(brzina);
       oos.close();
-      System.out.println("Staklo napravljeno. ");
+      //System.out.println("Staklo napravljeno. ");
     }catch(IOException e){
       //e.printStackTrace();
       System.out.println("Masina za staklo ne moze napraviti.");

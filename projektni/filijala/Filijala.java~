@@ -18,7 +18,9 @@ import java.io.InputStream;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.FileReader;
-
+import java.util.zip.ZipInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 
 public class Filijala{
@@ -82,6 +84,48 @@ public class Filijala{
     return i;
   }
   
+  private int ispisGotovihNarudzbi(){
+    int brojNarudzbi = 0;
+    File[] lista = new File(putanja).listFiles();
+    for(int i = 0; i < lista.length; ++i){
+      try{
+        if (lista[i].isDirectory()){
+          brojNarudzbi++;
+          ZipInputStream zipStream = new ZipInputStream(new FileInputStream(putanja + lista[i].getName() + File.separator + "lista" + lista[i].getName() +".zip"));
+          zipStream.getNextEntry();
+          System.out.println("Narudzba " + lista[i].getName() + ": ");
+          Scanner sc = new Scanner(zipStream);
+          while (sc.hasNextLine()) {
+            System.out.println(sc.nextLine());
+          }
+          zipStream.closeEntry();
+          zipStream.close();
+        }
+      }catch(FileNotFoundException e){
+        System.out.println("Narudbza broj " + lista[i].getName() + " nije kompletirana!");
+      }catch(IOException e){
+        System.out.println("Narudbza broj " + lista[i].getName() + " nije kompletirana!");
+      }
+      
+    }
+    return brojNarudzbi;
+  }
+  
+  public void preuzmiNarudzbu(String brojNarudzbe){
+    File[] lista = new File(putanja).listFiles();
+    for(int i = 0; i < lista.length; ++i){
+      if ((lista[i].isDirectory()) && (lista[i].getName().equals(brojNarudzbe))){
+        File[] fajlovi = lista[i].listFiles();
+        for(File f: fajlovi)
+          f.delete();
+        lista[i].delete();
+        System.out.println("Narudzba " + brojNarudzbe + " preuzeta.");
+        return;
+      }
+    }
+    System.out.println("Narudzba pod tim brojem ne postoji!");
+  }
+  
   public static void main(String args[]){
     
     try{
@@ -128,7 +172,7 @@ public class Filijala{
                 f.posaljiZahtjev(s, n);
                 System.out.println("=======VAS ZAHTJEV JE POSLAT=======");
                 break;
-              //ZAHTJEV ZA PROZOR
+                //ZAHTJEV ZA PROZOR
               case 2:
                 System.out.println("UNESITE PODATKE O PROZORU U SLEDECEM FORMATU:");
                 System.out.println("VISINA SIRINA VRSTA_MATERIJALA IMA_LI_ROLETNE? IMA_LI_RESETKE? KROVNI_PROZOR? KOMADA");
@@ -153,7 +197,12 @@ public class Filijala{
             System.out.println("=================================");
             break;
           case 3:
-            
+            int brojNarudzbi = f.ispisGotovihNarudzbi();
+            System.out.println("KOJU NARUDZBU ZELITE DA PREUZMETE (ILI 0 ZA IZLAZ IZ MENIJA):");
+            System.out.print("> ");
+            Scanner unos = new Scanner(System.in);
+            String vr = unos.nextLine();
+            f.preuzmiNarudzbu(vr);
             break;
           case 0:
             f.posaljiOpciju(s, 0);
@@ -167,8 +216,7 @@ public class Filijala{
         
         
       }while(izbor != 0);
-      f.posaljiOpciju(s, 0);
-      //s.close();
+      //f.posaljiOpciju(s, 0);
     }catch(UnknownHostException e){
       System.out.println("Server trenutno nedostupan. Pokusajte kasnije.");
     }catch(IOException e){

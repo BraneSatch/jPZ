@@ -39,7 +39,6 @@ public class Filijala{
     try{
       ObjectOutputStream oos = new ObjectOutputStream(s.getOutputStream());
       oos.writeObject(n);
-      //oos.close();
     }catch(IOException e){
       System.out.println("Slanje trenutno onemoguceno. Kontaktirajte server.");
     }
@@ -49,7 +48,6 @@ public class Filijala{
     try{
       DataOutputStream os = new DataOutputStream(s.getOutputStream());
       os.writeInt(op);
-      //os.close();
     }catch(IOException e){
       System.out.println("Slanje trenutno onemoguceno. Kontaktirajte server.");
     }
@@ -59,7 +57,6 @@ public class Filijala{
     try{
       DataOutputStream os = new DataOutputStream(s.getOutputStream());
       os.writeUTF(this.ime);
-      //os.close();
     }catch(IOException e){
       System.out.println("Slanje imena trenutno onemoguceno. Kontaktirajte server.");
     }

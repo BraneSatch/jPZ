@@ -10,10 +10,14 @@ import fabrika.roba.poluproizvodi.Mehanizam;
 import fabrika.roba.Poluproizvod;
 import fabrika.roba.Materijal;
 
-public class MasinaZaMehanizamOtvaranja extends Masina{
+public class MasinaZaMehanizamOtvaranja extends Masina implements Testable{
   
   public MasinaZaMehanizamOtvaranja(String ozn, int br){
     super(ozn, br);
+  }
+  
+  @Override
+  public void testiraj(Poluproizvod p){
   }
   
   @Override
@@ -22,6 +26,8 @@ public class MasinaZaMehanizamOtvaranja extends Masina{
       String s = File.separator;
       ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File(putanja + "mehanizam.s")));
       Mehanizam m = new Mehanizam();
+      
+      testiraj(m);
       
       PrintWriter pw = new PrintWriter(putanja + this.getOznaka() + File.separator + m.getSerijskiBroj() + ".txt");
       pw.write("Mehanizam");

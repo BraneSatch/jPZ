@@ -43,12 +43,6 @@ public class RacunovodstvoRadnik extends Thread{
       this.p = p;
       this.in = s.getInputStream();
       this.start();
-      File akt = new File(putanja + "aktivni");
-      File cekanje = new File(putanja + "cekanje");
-      if (!(akt.exists()))
-        akt.mkdir();
-      if (!(cekanje.exists()))
-        cekanje.mkdir();
     }catch(IOException e){
       zatvoriAplikaciju = true;
       System.out.println("Zahtjev se ne moze obraditi.");
@@ -140,7 +134,6 @@ public class RacunovodstvoRadnik extends Thread{
       Narudzba n = (Narudzba)ois.readObject();
       this.sacuvajNalog(n);
       RadniNalog r = this.napraviNalog(s, n);
-      //System.out.println(r);
       p.dodajNalog(r);
     }catch(IOException e){
       System.out.println("Ucitavanje naloga neuspijelo! Provjerite konekciju sa filijalom " + imeFilijale + "!");

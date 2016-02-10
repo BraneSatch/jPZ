@@ -45,13 +45,13 @@ public class MasinaZaSklapanje extends Masina{
       spisak[0] = k;
       spisak[1] = me;
       spisak[2] = s;
-    
+      
       if (sigurna){
         v = new SigurnosnaVrata(sirina, visina, m, spisak, st, resetke);
       }else{
         v = new Vrata(sirina, visina, m, spisak, st, resetke);
       }
-    
+      
     }else{
       spisak = new Poluproizvod[2];
       spisak[0] = k;
@@ -63,7 +63,7 @@ public class MasinaZaSklapanje extends Masina{
         v = new Vrata(sirina, visina, m, spisak, st, resetke);
       }
     }
-
+    
     try{
       pw = new PrintWriter(putanja + this.getOznaka() + File.separator + v.getSerijskiBroj() + ".txt");
     }catch(FileNotFoundException e){
@@ -77,14 +77,14 @@ public class MasinaZaSklapanje extends Masina{
     Prozor p;
     File konstrukcija = new File(putanja + "konstrukcija.s");
     Konstrukcija k = new Konstrukcija(m);
-                                     
+    
     File mehanizam = new File(putanja + "mehanizam.s");
     Mehanizam me;
     if (krovni)
       me = new KrovniMehanizam();
     else
       me = new Mehanizam();
-
+    
     File staklo = new File(putanja + "staklo.s");
     Staklo st = new Staklo();
     

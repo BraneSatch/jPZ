@@ -13,11 +13,9 @@ import fabrika.roba.poluproizvodi.*;
 import fabrika.roba.Materijal;
 
 public class MasinaZaSklapanje extends Masina{
-  private ArrayList<Poluproizvod> stanje;
   
   public MasinaZaSklapanje(String ozn, int br){
     super(ozn, br);
-    stanje = new ArrayList<Poluproizvod>();
   }
   
   public Vrata sklopiVrata(double visina, double sirina, Materijal m, boolean st, boolean resetke, boolean sigurna){
